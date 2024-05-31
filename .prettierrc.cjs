@@ -3,8 +3,6 @@ module.exports = {
   endOfLine: 'lf',
   // 홑따옴표 사용
   singleQuote: true,
-  // 세미콜론 사용 여부
-  semi: false,
   // 탭의 사용을 금하고 스페이스바 사용으로 대체
   useTabs: false,
   // 탭의 넓이 2칸
@@ -15,4 +13,4 @@ module.exports = {
   printWidth: 120,
   // 화살표 함수의 매개변수가 하나일 때 괄호 생략 여부 (생략할 경우 aviod)
   arrowParens: 'always',
-}
+};

@@ -1,8 +1,12 @@
-import { useState } from 'react'
-import './App.css'
+import { AppStyle } from '@/styles/AppStyle';
 
 function App() {
-  return <div className={''} />
+  return (
+    <>
+      <AppStyle />
+      <p>{'dkdkdkdkdkdkdjfalskdjf;alskf'}</p>
+    </>
+  );
 }
 
-export default App
+export default App;

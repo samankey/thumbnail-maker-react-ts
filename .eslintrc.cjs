@@ -20,11 +20,9 @@ module.exports = {
     // 일치 연산자 사용 필수
     eqeqeq: 'warn',
     // 불필요한 세미콜론 사용 시 에러 표시
-    'no-extra-semi': 'error',
+    // 'no-extra-semi': 'error',
     // jsx 파일 확장자 .jx, .jsx, .ts, .tsx 허용
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-    // 화살표 함수의 파라미터가 하나일때 괄호 생략
-    'arrow-parens': ['warn', 'as-needed'],
     // export문이 하나일 때 default export 사용 권장 경고 비활성화
     'import/prefer-default-export': ['off'],
     // react hooks의 의존성배열이 충분하지 않을 때 경고 표시
@@ -56,6 +54,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'no-shadow': 0,
     'jsx-a11y/no-noninteractive-element-interactions': 0,
+    'class-methods-use-this': 'off',
 
     // not used
     // 컴포넌트의 props 검사 비활성화, propstype 사용하지 않아도 경고 띄우지 않음
@@ -64,12 +63,22 @@ module.exports = {
     // "no-unused-vars": ["off"],
     // 콘솔 사용 시 발생하는 경고 비활성화
     // "no-console": ["off"],
+    // 화살표 함수의 파라미터가 하나일때 괄호 생략
+    // 'arrow-parens': ['warn', 'as-needed'],
   },
   settings: {
     'import/resolver': {
+      typescript: {},
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
+      alias: {
+        map: [
+          ['@', './src'],
+          ['@public', './public'],
+        ],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+      },
     },
   },
-}
+};
