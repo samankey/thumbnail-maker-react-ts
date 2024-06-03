@@ -1,13 +1,31 @@
-import { useState, DragEvent } from 'react';
+import { useState, useRef, DragEvent } from 'react';
 import { DraggableTagList } from '@/components/DraggableTagList.tsx';
+import styled from 'styled-components';
 
+const Wrapper = styled.div`
+  width: 768px;
+  height: 400px;
+  padding: 10px;
+  border: 1px solid red;
+`;
 export const Preview = () => {
   // tags 배열에는 각 input 요소의 고유 식별자가 저장됩니다.
   const [tags, setTags] = useState<string[]>([]);
   const [dragging, setDragging] = useState<number | null>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null); // TagBox에 대한 ref
+  const tagBoxRef = useRef<HTMLDivElement>(null); // TagBox에 대한 ref
 
   // 새로운 input 요소를 tags 배열에 추가하는 함수
   const handleAddTagClick = () => {
+    if (tagBoxRef.current && wrapperRef.current) {
+      const tagBoxHeight = wrapperRef.current.offsetHeight;
+      const expectedHeight = tagBoxRef.current.scrollHeight + 62;
+
+      if (expectedHeight >= tagBoxHeight) {
+        alert('!!!');
+        return;
+      }
+    }
     // 새로운 input 요소의 고유 식별자 생성 (여기서는 현재 시간을 사용)
     const newTagId = `tag-${Date.now()}`;
     setTags([...tags, newTagId]);
@@ -38,15 +56,18 @@ export const Preview = () => {
     setDragging(null);
   };
   return (
-    <div>
-      <DraggableTagList
-        tags={tags}
-        dragging={dragging}
-        handleDragStart={handleDragStart}
-        handleDragEnter={handleDragEnter}
-        handleDragEnd={handleDragEnd}
-      />
+    <>
+      <Wrapper ref={wrapperRef}>
+        <DraggableTagList
+          tagBoxRef={tagBoxRef}
+          tags={tags}
+          dragging={dragging}
+          handleDragStart={handleDragStart}
+          handleDragEnter={handleDragEnter}
+          handleDragEnd={handleDragEnd}
+        />
+      </Wrapper>
       <button onClick={handleAddTagClick}>{'추가'}</button>
-    </div>
+    </>
   );
 };

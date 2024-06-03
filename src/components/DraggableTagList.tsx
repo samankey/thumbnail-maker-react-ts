@@ -1,8 +1,9 @@
-import { DragEvent } from 'react';
+import { DragEvent, RefObject } from 'react';
 import { Tags } from '@/components/Tags';
 import styled from 'styled-components';
 
 interface TagProps {
+  tagBoxRef: RefObject<HTMLDivElement>;
   tags: string[];
   dragging: number | null;
   handleDragStart: (e: DragEvent<HTMLDivElement>, index: number) => void;
@@ -16,15 +17,18 @@ const TagBox = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 10px;
-  width: 768px;
-  height: 400px;
-  padding: 10px;
-  border: 1px solid red;
 `;
 
-export const DraggableTagList = ({ tags, dragging, handleDragStart, handleDragEnter, handleDragEnd }: TagProps) => {
+export const DraggableTagList = ({
+  tagBoxRef,
+  tags,
+  dragging,
+  handleDragStart,
+  handleDragEnter,
+  handleDragEnd,
+}: TagProps) => {
   return (
-    <TagBox>
+    <TagBox ref={tagBoxRef}>
       {tags.map((tag, index) => (
         <Tags
           key={tag}
