@@ -143,7 +143,7 @@ export const AppResetStyle = createGlobalStyle`
   
   input, textarea {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    border-width: 1px;
+    border-width: 0;
     font-family: inherit;
     font-size: inherit;
     font-weight: normal;
@@ -156,6 +156,7 @@ export const AppResetStyle = createGlobalStyle`
   input[type=email] {
     -webkit-appearance: none;
     -moz-appearance: none;
+    appearance: none;
   }
   input[type=search]::-webkit-search-cancel-button {
     -webkit-appearance: textfield;
@@ -167,6 +168,9 @@ export const AppResetStyle = createGlobalStyle`
   input::placeholder {
     color: #bebebe;
     font-style: normal;
+  }
+  input:focus {
+    outline: none;
   }
   [hidden] {
   	display: none !important;
